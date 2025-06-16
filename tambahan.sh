@@ -12,11 +12,11 @@ sudo mkfs.ext4 -L datafs /dev/vda2
 sudo mkswap /dev/vda3
 sudo swapon /dev/vda3
 
-UUID_EXT4=$(blkid -s UUID -o value "$PART_EXT4")
-UUID_SWAP=$(blkid -s UUID -o value "$PART_SWAP")
+UUID_EXT4=$(blkid -s UUID -o value "/dev/vda2")
+UUID_SWAP=$(blkid -s UUID -o value "/dev/vda3")
 
 mkdir -p /data
 echo "UUID=$UUID_EXT4 /data ext4 defaults 0 2" >> /etc/fstab
 echo "UUID=$UUID_SWAP none swap sw 0 0" >> /etc/fstab
 
-mount /dev/vda3 /data
+mount /dev/vda2 /data
