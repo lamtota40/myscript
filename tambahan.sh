@@ -28,3 +28,7 @@ sysctl vm.vfs_cache_pressure=$vfs_cache_pressure
 sysctl -p
 
 mount /dev/vda2 /data
+sudo apt install -y onboard gparted snapd zsh curl jq
+sudo apt install gnome-software-plugin-snap -y
+sudo snap install snap-store
+sudo snap install notepad-plus-plus
