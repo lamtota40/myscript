@@ -16,14 +16,20 @@ sudo fail2ban-client status
 sudo fail2ban-client status sshd
 sudo iptables -L -n
 
-cat > /etc/fail2ban/jail.d/vnc.local <<'EOF'
+cat > /etc/fail2ban/jail.d/tigervnc.local <<'EOF'
 [tigervnc]
 enabled = true
 port = 5901
 filter = tigervnc
-logpath = /root/.vnc/*.log
+logpath = /root/.vnc/ubuntu:1.log
 maxretry = 1
 findtime = 86400
 bantime = -1
+EOF
+
+cat > /etc/fail2ban/filter.d/tigervnc.local <<'EOF'
+[Definition]
+failregex = ^.*Connections: closed: <HOST>::\d+ \(Authentication failure\)
+ignoreregex =
 EOF
 sudo systemctl restart fail2ban
