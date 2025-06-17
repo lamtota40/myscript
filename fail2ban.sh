@@ -4,7 +4,7 @@ sudo apt update
 sudo apt install fail2ban -y
 sudo systemctl status fail2ban
 
-cat > /etc/fail2ban/jail.d/ssh.local <<'EOF'
+cat > /etc/fail2ban/jail.d/sshd.local <<'EOF'
 [sshd]
 enabled = true
 port = 22
