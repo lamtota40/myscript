@@ -1,6 +1,9 @@
+#!/bin/bash
+
 sudo apt update
 sudo apt install fail2ban -y
 sudo systemctl status fail2ban
+
 cat > /etc/fail2ban/jail.d/ssh.local <<'EOF'
 [sshd]
 enabled = true
@@ -10,11 +13,6 @@ maxretry = 1
 findtime = 86400
 bantime = -1
 EOF
-
-sudo systemctl restart fail2ban
-sudo fail2ban-client status
-sudo fail2ban-client status sshd
-sudo iptables -L -n
 
 cat > /etc/fail2ban/jail.d/tigervnc.local <<'EOF'
 [tigervnc]
@@ -27,9 +25,13 @@ findtime = 86400
 bantime = -1
 EOF
 
-cat > /etc/fail2ban/filter.d/tigervnc.local <<'EOF'
+cat > /etc/fail2ban/filter.d/tigervnc.conf <<'EOF'
 [Definition]
 failregex = ^.*Connections: closed: <HOST>::\d+ \(Authentication failure\)
 ignoreregex =
 EOF
+
 sudo systemctl restart fail2ban
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+sudo iptables -L -n
