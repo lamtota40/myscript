@@ -6,8 +6,8 @@ cat > /etc/fail2ban/jail.d/ssh.local <<'EOF'
 enabled = true
 port = ssh
 logpath = /var/log/auth.log
-maxretry = 3
-findtime = 300
+maxretry = 2
+findtime = 86400
 bantime = -1
 EOF
 
