@@ -15,3 +15,15 @@ sudo systemctl restart fail2ban
 sudo fail2ban-client status
 sudo fail2ban-client status sshd
 sudo iptables -L -n
+
+cat > /etc/fail2ban/jail.d/vnc.local <<'EOF'
+[tigervnc]
+enabled = true
+port = 5901
+filter = tigervnc
+logpath = /root/.vnc/*.log
+maxretry = 2
+findtime = 86400
+bantime = -1
+EOF
+sudo systemctl restart fail2ban
