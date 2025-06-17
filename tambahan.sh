@@ -32,3 +32,6 @@ sudo apt install -y onboard gparted snapd zsh curl jq
 sudo apt install gnome-software-plugin-snap -y
 sudo snap install snap-store
 sudo snap install notepad-plus-plus
+
+
+#600x1024 atau 768x1024
