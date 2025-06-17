@@ -31,6 +31,23 @@ failregex = ^.*Connections: closed: <HOST>::\d+ \(Authentication failure\)
 ignoreregex =
 EOF
 
+cat > /etc/fail2ban/filter.d/xrdp.conf <<'EOF'
+[Definition]
+failregex = ^.*Connections: closed: <HOST>::\d+ \(Authentication failure\)
+ignoreregex =
+EOF
+
+cat > /etc/fail2ban/jail.d/xrdp.local <<'EOF'
+[xrdp]
+enabled = true
+port = 3389
+filter = xrdp
+logpath = /root/.vnc/ubuntu:1.log
+maxretry = 1
+findtime = 86400
+bantime = -1
+EOF
+
 sudo systemctl restart fail2ban
 sudo fail2ban-client status
 sudo fail2ban-client status sshd
