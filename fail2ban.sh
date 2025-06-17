@@ -33,7 +33,7 @@ EOF
 
 cat > /etc/fail2ban/filter.d/xrdp.conf <<'EOF'
 [Definition]
-failregex = ^.*Connections: closed: <HOST>::\d+ \(Authentication failure\)
+failregex = .*login failed for user:.*
 ignoreregex =
 EOF
 
@@ -42,7 +42,7 @@ cat > /etc/fail2ban/jail.d/xrdp.local <<'EOF'
 enabled = true
 port = 3389
 filter = xrdp
-logpath = /root/.vnc/ubuntu:1.log
+logpath = /var/log/xrdp.log
 maxretry = 1
 findtime = 86400
 bantime = -1
