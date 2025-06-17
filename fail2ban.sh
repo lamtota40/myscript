@@ -4,7 +4,7 @@ sudo systemctl status fail2ban
 cat > /etc/fail2ban/jail.d/ssh.local <<'EOF'
 [sshd]
 enabled = true
-port = ssh
+port = 22
 logpath = /var/log/auth.log
 maxretry = 2
 findtime = 86400
