@@ -19,8 +19,8 @@ mkdir -p /data
 echo "UUID=$UUID_EXT4 /data ext4 defaults 0 2" >> /etc/fstab
 echo "UUID=$UUID_SWAP none swap sw 0 0" >> /etc/fstab
 
-swappiness=60
-vfs_cache_pressure=100
+swappiness=30
+vfs_cache_pressure=50
 sed -i -e '/^vm.swappiness/d' -e '/^vm.vfs_cache_pressure/d' /etc/sysctl.conf
 echo -e "\nvm.swappiness=$swappiness\nvm.vfs_cache_pressure=$vfs_cache_pressure" >> /etc/sysctl.conf
 sysctl vm.swappiness=$swappiness
